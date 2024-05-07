@@ -3,6 +3,6 @@ word = "Holberton"
 word_first_3 = word[:3]
 word_last_2 = word[-2:]
 middle_word = word[1:-1]
-print(word_first_3)
-print(word_last_2)
-print(middle_word)
+print(f"First 3 letter: {}".format(word_first_3))
+print(f"Last 2 letters: {}".format(word_last_2))
+print(f"Middle word: {}".format(middle_word))
