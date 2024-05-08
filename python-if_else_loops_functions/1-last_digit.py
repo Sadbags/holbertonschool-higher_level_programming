@@ -7,7 +7,7 @@ if number < 0:
 else:
     n = number % 10
 if n == 0:
-    print("{}{:d} is {:d} is 0".format(s, number, n))
+    print("{}{:d} is {:d} and is 0".format(s, number, n))
 elif n > 5:
     print("{}{:d} is {:d} and is greater than 5".format(s, number, n))
 else:
