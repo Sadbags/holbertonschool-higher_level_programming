@@ -1,49 +1,39 @@
-#!/usr/bin/python3
-""" Module with the class Square """
+]  # !/usr/bin/python3
+"""Define a class Square."""
 
 
 class Square:
-    """ Square Defined """
-    __size = None
+    """Represent a square."""
 
-    def __init__(self, size=0):
-        """ Docstring of __init___ method
+    def __init__(self, size):
+        """Initialize a new square.
 
         Args:
-            size (int): size from main to be displayed
+            size (int): The size of the new square.
         """
-        self.__size = size
-        """ int: Docstring *after* attribute, with type specified """
+        self.size= size
 
-    @property
+    @ property
     def size(self):
-        """ Docstring of size """
-        return self.__size
-        """ returns the size attribute with value """
+        """Get/set the current size of the square."""
+        return (self.__size)
 
-    @size.setter
+    @ size.setter
     def size(self, value):
-        """ Docstring of size
-
-        Args:
-            value (int): Contains size from __size attribute
-        """
-        if (type(value) != int):
+        if not isinstance(value, int):
             raise TypeError("size must be an integer")
-        if (self.__size < 0):
+        elif value < 0:
             raise ValueError("size must be >= 0")
-        self.__size = value
-        """ set size """
+        self.__size= value
 
     def area(self):
-        """ Docstring of area """
-        return self.__size * self.__size
-        """ size squared """
+        """Return the current area of the square."""
+        return (self.__size * self.__size)
 
     def my_print(self):
-        """ Docstring of my_print printer """
-        if (self.__size == 0):
-            print()
-        else:
-            for x in range(self.__size):
-                print("#" * self.__size)
+        """Print the square with the # character."""
+        for i in range(0, self.__size):
+            [print("#", end="") for j in range(self.__size)]
+            print("")
+        if self.__size == 0:
+            print("")
