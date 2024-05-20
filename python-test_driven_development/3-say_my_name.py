@@ -7,16 +7,15 @@ Fucntion that prints name
 
 
 def say_my_name(first_name, last_name=""):
+    """Prints a name
+    Args:
+            first_name: the first name
+            last_name: the last name
+    Return:
+            None
     """
-
-    Class say_my_name
-
-    """
-
-    error1 = "first_name must be a string"
-    error2 = "lats_name must be a string"
     if type(first_name) is not str:
-        raise TypeError(error1)
+        raise TypeError("first_name must be a string")
     if type(last_name) is not str:
-        raise TypeError(error2)
-    print("My name is {:s} {:s}".format(first_name, last_name))
+        raise TypeError("last_name must be a string")
+    print("My name is {} {}".format(first_name, last_name))
