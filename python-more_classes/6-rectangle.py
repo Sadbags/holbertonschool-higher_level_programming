@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" class Rectangle module """
+""" class Rectangle module"""
 
 
 class Rectangle:
@@ -9,8 +9,8 @@ class Rectangle:
 
     number_of_instances = 0
 
-    def __init__(self, width=0, heigth=0):
-        self.height = heigth
+    def __init__(self, width=0, height=0):
+        self.height = height
         self.width = width
         Rectangle.number_of_instances += 1
 
@@ -31,17 +31,18 @@ class Rectangle:
         return self.__height
 
     @height.setter
-    def heigth(self, value):
+    def height(self, value):
         if type(value) != int:
-            raise TypeError("heigth must be an integer")
+            raise TypeError("height must be an integer")
         if value < 0:
-            raise ValueError("heigth must be >= 0")
+            raise ValueError("height must be >= 0")
         self.__height = value
 
     def area(self):
         return self.__width * self.__height
 
     def perimeter(self):
+
         if self.__width == 0 or self.__height == 0:
             return 0
         return (self.__width * 2) + (self.__height * 2)
