@@ -3,7 +3,7 @@
 
 
 def is_same_class(obj, a_class):
-    """ Return True is obj isinstance """
+    """ Return True if obj isinstance """
 
     if type(obj) == a_class:
         return True
