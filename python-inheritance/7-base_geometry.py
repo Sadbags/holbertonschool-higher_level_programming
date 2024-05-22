@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-""" module of a class """
+""" Module that contains the Basegeometry class """
 
 
 class BaseGeometry:
-    """ raise exception """
+    """ Empty class """
 
     def area(self):
         """ raise exception """
