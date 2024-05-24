@@ -7,11 +7,11 @@ class Animal(ABC):
         pass
 
 
-class dog(Animal):
+class Dog(Animal):
     def sound(self):
         return 'Bark'
 
 
-class cat(Animal):
+class Cat(Animal):
     def sound(self):
         return 'Meow'
