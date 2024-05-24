@@ -1,8 +1,8 @@
 class CountedIterator:
-    def __init__(self, iterator):
-        self.iterator = iterator
+    def __init__(self, iterable):
+        self.iterable = iterable
         self.count = 0
-        self.iterator = iter
+        self.iterator = iter(iterable)
 
     def __iter__(self):
         return self
