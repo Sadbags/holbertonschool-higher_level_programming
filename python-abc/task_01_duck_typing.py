@@ -37,10 +37,3 @@ class Rectangle(Shape):
     def shape_info(shape):
         print(f"Area: {shape.area()}")
         print(f"Perimeter: {shape.perimeter()}")
-
-
-circle = Circle(5)
-rectangle = Rectangle(4, 7)
-
-Rectangle.shape_info(circle)
-Rectangle.shape_info(rectangle)
