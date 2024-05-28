@@ -15,7 +15,7 @@ class Student:
         """ returns dict """
         if attrs is None:
             return self.__dict__
-        
+
         Newdict = {}
         for a in attrs:
             try:
@@ -23,11 +23,11 @@ class Student:
             except KeyError:
                 pass
             return Newdict
-        
+
     def reload_from_json(self, json):
         """ replace all attr of student """
         for key in json:
             try:
                 setattr(self, key, json[key])
-            except:
+            except KeyError:
                 pass
