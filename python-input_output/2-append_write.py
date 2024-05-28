@@ -2,7 +2,7 @@
 """ append a string at end of text file  """
 
 
-def write_file(filename="", text=""):
+def append_write(filename="", text=""):
     """ append a string """
 
     with open(filename, 'a', encoding='utf-8') as file:
