@@ -20,6 +20,6 @@ class Student:
         for a in attrs:
             try:
                 Newdict[a] = self.__dict__[a]
-            except:
+            except KeyError:
                 pass
         return Newdict
