@@ -32,6 +32,6 @@ def fetch_and_save_posts():
               writer.writeheader()
               writer.writerows(data)
 
-              print("Posts saved to posts.csv")
+          print("Posts saved to posts.csv")
       else:
           print("Failed to fetch posts")
