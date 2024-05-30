@@ -35,3 +35,6 @@ def fetch_and_save_posts():
           print("Posts saved to posts.csv")
       else:
           print("Failed to fetch posts")
+
+fetch_and_print_posts()
+fetch_and_save_posts()
