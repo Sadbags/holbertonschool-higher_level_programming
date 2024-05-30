@@ -28,6 +28,7 @@ class SimpleHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
             self.send_response(HTTPStatus.NOT_FOUND)
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
+            # Modify this line to return the expected message
             self.wfile.write(b"404 Not Found: The requested resource was not found on this server.")
 
 def run(server_class=http.server.HTTPServer, handler_class=SimpleHTTPRequestHandler, port=8000):
