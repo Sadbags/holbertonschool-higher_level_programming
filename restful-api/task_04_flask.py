@@ -1,4 +1,6 @@
-from flask import Flask, jsonify, request
+from flask import Flask
+from flask import jsonify
+from flask import request
 
 app = Flask(__name__)
 
@@ -12,13 +14,13 @@ def home():
 
 @app.route("/data")
 def data():
-    return jsonify(users)
+    return jsonify(list(users.key()))
 
 @app.route("/status")
 def status():
     return "OK"
 
-@app.route("/users/username>")
+@app.route("/users/<username>")
 def get_user(username):
     if username in users:
         return jsonify(users[username])
