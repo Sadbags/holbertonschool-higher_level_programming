@@ -4,9 +4,7 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 
 # Dictionary to store user data
-users = {
-    "jane": {"name": "Jane", "age": 28, "city": "Los Angeles"}
-}
+users = {}
 
 # Define the root endpoint
 @app.route("/")
@@ -16,7 +14,7 @@ def home():
 # Define the /data endpoint
 @app.route("/data")
 def data():
-    return jsonify(list(users.keys()))
+    return jsonify(list(users.values()))
 
 # Define the /status endpoint
 @app.route("/status")
