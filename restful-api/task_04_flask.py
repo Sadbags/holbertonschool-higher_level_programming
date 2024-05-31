@@ -1,11 +1,9 @@
-from flask import Flask
-from flask import jsonify
-from flask import request
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
 users = {
-	"jane": {"name": "Jane", "age": 28, "city": "Los Angeles"}
+    "jane": {"name": "Jane", "age": 28, "city": "Los Angeles"}
 }
 
 @app.route("/")
@@ -14,7 +12,7 @@ def home():
 
 @app.route("/data")
 def data():
-    return jsonify(list(users.key()))
+    return jsonify(list(users.keys()))  # Corrected line
 
 @app.route("/status")
 def status():
