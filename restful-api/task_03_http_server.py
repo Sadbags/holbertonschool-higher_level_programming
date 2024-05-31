@@ -3,6 +3,7 @@ import json
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
+        print(f"Handling GET request for path: {self.path}")
         if self.path == "/":
             self.send_response(200)
             self.send_header("Content-type", "text/plain")
@@ -36,7 +37,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.send_response(404)
             self.send_header("Content-type", "text/plain")
             self.end_headers()
-            self.wfile.write(b"404 Not Found: The requested resource was not found on this server.")
+            self.wfile.write(b"Endpoint not found")
 
 def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler, port=8000):
     server_address = ('', port)
