@@ -7,52 +7,53 @@ app = Flask(__name__)
 
 def read_json(file_path):
     with open(file_path, 'r') as file:
-        return json.load(file)
+        data = json.load(file)
+    return data['items']
 
 def read_csv(file_path):
-    products = []
+    items = []
     with open(file_path, 'r') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            row['id'] = int(row['id'])
-            row['price'] = float(row['price'])
-            products.append(row)
-    return products
+        csv_reader = csv.DictReader(file)
+        for row in csv_reader:
+            items.append(row)
+    return items
 
-def read_sqlite(database_path):
-    conn = sqlite3.connect(database_path)
+def read_sql():
+    conn = sqlite3.connect('products.db')
     cursor = conn.cursor()
-    cursor.execute('SELECT id, name, category, price FROM Products')
+    cursor.execute("SELECT * FROM Products")
     rows = cursor.fetchall()
-    products = [{'id': row[0], 'name': row[1], 'category': row[2], 'price': row[3]} for row in rows]
     conn.close()
-    return products
+    items = []
+    for row in rows:
+        items.append({
+            'id': row[0],
+            'name': row[1],
+            'category': row[2],
+            'price': row[3]
+        })
+    return items
 
 @app.route('/products')
-def products():
+def display_products():
     source = request.args.get('source')
     product_id = request.args.get('id')
 
-    if source not in ['json', 'csv', 'sql']:
+    if source == 'json':
+        items = read_json('products.json')
+    elif source == 'csv':
+        items = read_csv('products.csv')
+    elif source == 'sql':
+        items = read_sql()
+    else:
         return render_template('product_display.html', error="Wrong source")
 
-    if source == 'json':
-        products = read_json('products.json')
-    elif source == 'csv':
-        products = read_csv('products.csv')
-    elif source =='sql':
-        products = read_sqlite('products.db')
-    else:
-        products = read_sqlite('products.db')
-
     if product_id:
-        product_id = int(product_id)
-        filtered_products = [product for product in products if product['id'] == product_id]
-        if not filtered_products:
+        items = [item for item in items if str(item['id']) == product_id]
+        if not items:
             return render_template('product_display.html', error="Product not found")
-        products = filtered_products
 
-    return render_template('product_display.html', products=products)
+    return render_template('product_display.html', items=items)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
