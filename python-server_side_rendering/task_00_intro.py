@@ -34,7 +34,7 @@ def generate_invitations(template, attendees):
 
 
 template = """
-Dear {{ name}},
+Dear {{ name }},
 
 You are invited to the {event_title}
 Date: {event_date}
