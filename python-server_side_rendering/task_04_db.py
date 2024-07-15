@@ -40,6 +40,8 @@ def products():
         products = read_json('products.json')
     elif source == 'csv':
         products = read_csv('products.csv')
+    elif source =='sql':
+        products = read_sqlite('products.db')
     else:
         products = read_sqlite('products.db')
 
