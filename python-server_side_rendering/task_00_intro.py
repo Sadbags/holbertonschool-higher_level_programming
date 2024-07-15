@@ -54,9 +54,9 @@ Event Organizer
 
 # Example attendees data
 attendees = [
-    {"name": "Alice", "event_title": "Annual Gala", "event_date": "2024-07-15", "event_location": "Grand Ballroom"},
-    {"name": "Bob", "event_title": "Annual Gala", "event_date": "2024-07-15"},  # Missing event_location
-    {"name": "Charlie", "event_title": "Annual Gala", "event_location": "Grand Ballroom"},  # Missing event_date
+    {"name": "Alice", "event_title": "Python Conference", "event_date": "2023-07-15", "event_location": "New York"},
+    {"name": "Bob", "event_title": "Data Science Work", "event_date": "2023-08-20", "event_location": "San Francisco"},
+    {"name": "Charlie", "event_title": "AI Summit", "event_date": "N/A", "event_location": "Boston"},
 ]
 
 # Generate invitations
