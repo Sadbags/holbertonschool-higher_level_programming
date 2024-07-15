@@ -42,14 +42,12 @@ def generate_invitations(template, attendees):
 template = """
 Dear {{ name }},
 
-You are cordially invited to the {{ event_title }}.
-Date: {{ event_date }}
-Location: {{ event_location }}
+You are cordially invited to the {{ event_title }} on {{ event_date }} at {{ event_location }}
 
 We look forward to seeing you there!
 
 Best regards,
-Event Organizer
+Event Team
 """
 
 # Example attendees data
