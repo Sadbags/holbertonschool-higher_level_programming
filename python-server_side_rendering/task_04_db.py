@@ -19,29 +19,29 @@ def read_csv(file_path):
             products.append(row)
     return products
 
-
 def read_sqlite(database_path):
     conn = sqlite3.connect(database_path)
     cursor = conn.cursor()
-    cursor.execute('SELECT id, name, category, price FROM Product')
+    cursor.execute('SELECT id, name, category, price FROM Products')
     rows = cursor.fetchall()
     products = [{'id': row[0], 'name': row[1], 'category': row[2], 'price': row[3]} for row in rows]
     conn.close()
     return products
-
 
 @app.route('/products')
 def products():
     source = request.args.get('source')
     product_id = request.args.get('id')
 
-    if source not in ['json', 'csv']:
+    if source not in ['json', 'csv', 'sql']:
         return render_template('product_display.html', error="Wrong source")
 
     if source == 'json':
         products = read_json('products.json')
-    else:
+    elif source == 'csv':
         products = read_csv('products.csv')
+    else:
+        products = read_sqlite('products.db')
 
     if product_id:
         product_id = int(product_id)
