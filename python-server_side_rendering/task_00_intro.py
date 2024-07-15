@@ -1,62 +1,34 @@
 import os
 
 def generate_invitations(template, attendees):
-    # Check if template is a string
+
     if not isinstance(template, str):
-        print("Error: Template is not a string.")
+        print("Error: Template must be a string.")
         return
 
-    # Check if attendees is a list
-    if not isinstance(attendees, list):
-        print(f"Error: Attendees is not a list. Type provided: {type(attendees)}")
-        return
-
-    # Check if each item in attendees list is a dictionary
     if not all(isinstance(attendee, dict) for attendee in attendees):
-        print(f"Error: Each attendee should be a dictionary. Invalid items: {[type(attendee) for attendee in attendees if not isinstance(attendee, dict)]}")
+        print("Error: Attendees must be in a list of dictionaries.")
         return
 
-    # Check if template is empty
     if not template:
-        print("Error: Template is empty, no output files generated.")
+        print("Template is empty, no output files generated.")
         return
 
-    # Check if attendees list is empty
     if not attendees:
         print("No data provided, no output files generated.")
         return
 
-    # Process each attendee and generate output files
     for index, attendee in enumerate(attendees, start=1):
-        invitation = template
-        # Replace placeholders with actual values or "N/A" if missing
-        for key in ["name", "event_title", "event_date", "event_location"]:
-            invitation = invitation.replace(f"{{{{{key}}}}}", str(attendee.get(key, "N/A")))
-
-        # Write to output file
-        filename = f"output_{index}.txt"
-        with open(filename, 'w') as file:
+        attendee = attendee.copy()
+        missing_keys = [key for key in ['event_date', 'event_location', 'event_title'] if key not in attendee]
+        for key in missing_keys:
+            print(f"Warning: Replacing missing data '{key}' with 'N/A'.")
+            attendee[key] = "N/A"
+        try:
+            invitation = template.format(**attendee)
+        except KeyError as e:
+            print(f"Warning: Unexpected missing data {e}")
+            attendee[str(e)] = "N/A"
+            invitation = template.format(**attendee)
+        with open(f"output_{index}.txt", "w") as file:
             file.write(invitation)
-        print(f"Generated {filename}")
-
-# Example template
-template = """
-Dear {{ name }},
-
-You are cordially invited to the {{ event_title }} on {{ event_date }} at {{ event_location }}
-
-We look forward to seeing you there!
-
-Best regards,
-Event Team
-"""
-
-# Example attendees data
-attendees = [
-    {"name": "Alice", "event_title": "Python Conference", "event_date": "2023-07-15", "event_location": "New York"},
-    {"name": "Bob", "event_title": "Data Science Workshop", "event_date": "2023-08-20", "event_location": "San Francisco"},
-    {"name": "Charlie", "event_title": "AI Summit", "event_date": "N/A", "event_location": "Boston"},
-]
-
-# Generate invitations
-generate_invitations(template, attendees)
