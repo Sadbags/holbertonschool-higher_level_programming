@@ -4,31 +4,24 @@
     <title>Product Display</title>
 </head>
 <body>
-    <h1>Product List</h1>
+    <h1>Product Display</h1>
     {% if error %}
         <p>{{ error }}</p>
     {% else %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in items %}
-                    <tr>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.category }}</td>
-                        <td>{{ item.price }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.category }}</td>
+                <td>{{ product.price }}</td>
+            </tr>
+            {% endfor %}
         </table>
-        {% if items|length == 0 %}
-            <p>No items found</p>
-        {% endif %}
     {% endif %}
 </body>
 </html>
