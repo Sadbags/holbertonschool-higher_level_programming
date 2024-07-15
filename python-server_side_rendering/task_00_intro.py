@@ -28,14 +28,15 @@ def generate_invitations(template, attendees):
 
     # Process each attendee and generate output files
     for index, attendee in enumerate(attendees, start=1):
-        output = template
-        for placeholder in ["name", "event_title", "event_date", "event_location"]:
-            output = output.replace(f"{{{{ {placeholder} }}}}", attendee.get(placeholder, "N/A"))
+        invitation = template
+        # Replace placeholders with actual values or "N/A" if missing
+        for key in ["name", "event_title", "event_date", "event_location"]:
+            invitation = invitation.replace(f"{{{{{key}}}}}", str(attendee.get(key, "N/A")))
 
         # Write to output file
         filename = f"output_{index}.txt"
         with open(filename, 'w') as file:
-            file.write(output)
+            file.write(invitation)
         print(f"Generated {filename}")
 
 # Example template
