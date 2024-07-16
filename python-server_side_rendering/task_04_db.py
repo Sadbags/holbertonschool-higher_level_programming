@@ -40,8 +40,10 @@ def products():
         products = read_json('products.json')
     elif source == 'csv':
         products = read_csv('products.csv')
-    else:
+    elif source =='sql':
         products = read_sqlite('products.db')
+    else:
+        return render_template('product_display.html', error="Wrong source")
 
     if product_id:
         product_id = int(product_id)
