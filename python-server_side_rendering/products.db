@@ -1,11 +1,6 @@
 import sqlite3
 import os
 
-def create_database():
-    # Delete the existing database file if it exists
-    if os.path.exists('products.db'):
-        os.remove('products.db')
-
     # Create and initialize the database
     conn = sqlite3.connect('products.db')
     cursor = conn.cursor()
