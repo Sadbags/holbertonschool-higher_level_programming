@@ -2,13 +2,16 @@ import sqlite3
 import os
 
 def create_database():
-    # Delete the existing database file if it exists
-    if os.path.exists('products.db'):
-        os.remove('products.db')
+    db_path = 'products.db'
 
-    # Create and initialize the database
-    conn = sqlite3.connect('products.db')
+    # Remove the old database file if it exists
+    if os.path.exists(db_path):
+        os.remove(db_path)
+
+    conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
+
+    # Create Products table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS Products (
             id INTEGER PRIMARY KEY,
@@ -17,12 +20,15 @@ def create_database():
             price REAL NOT NULL
         )
     ''')
+
+    # Insert sample data
     cursor.execute('''
         INSERT INTO Products (id, name, category, price)
         VALUES
         (1, 'Laptop', 'Electronics', 799.99),
         (2, 'Coffee Mug', 'Home Goods', 15.99)
     ''')
+
     conn.commit()
     conn.close()
 
