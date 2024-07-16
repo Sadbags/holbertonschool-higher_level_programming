@@ -5,13 +5,15 @@ import sqlite3
 
 app = Flask(__name__)
 
+
 def read_json(file_path):
     try:
         with open(file_path, 'r') as file:
             data = json.load(file)
-        return data['items']
+        return data
     except Exception as e:
         return []
+
 
 def read_csv(file_path):
     products = []
@@ -25,6 +27,7 @@ def read_csv(file_path):
         return products
     except Exception as e:
         return []
+
 
 def read_sqlite(db_path):
     products = []
@@ -45,17 +48,21 @@ def read_sqlite(db_path):
     except Exception as e:
         return []
 
+
 @app.route('/')
 def home():
     return render_template('index.html')
+
 
 @app.route('/about')
 def about():
     return render_template('about.html')
 
+
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
 
 @app.route('/products')
 def products():
@@ -74,13 +81,15 @@ def products():
     if product_id:
         try:
             product_id = int(product_id)
-            products = [product for product in products if product['id'] == product_id]
+            products = [
+                product for product in products if product['id'] == product_id]
             if not products:
                 return render_template('product_display.html', error="Product not found")
         except ValueError:
             return render_template('product_display.html', error="Invalid product ID")
 
     return render_template('product_display.html', products=products)
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
